@@ -118,6 +118,8 @@ class Board extends JPanel implements ActionListener {
 	}
 	// create a new block
 	private synchronized void newRec() { 
+		// TODO: special effect when a block starts moving
+		// TODO: add focus - the current column 
 		updateScore(); // update and display current score
 		blockGenerated++; // update the number of blocks generated
 		curBlock = new Block(); // reset the current block 
@@ -161,6 +163,7 @@ class Board extends JPanel implements ActionListener {
 		if ((blockList[curBlockIndex.x+x][curBlockIndex.y+y].getColor() != Block.shadesColor.NoColor)) return false;
 		Block.shadesColor thisColor = blockList[curBlockIndex.x][curBlockIndex.y].getColor(); // get the current block's color
 		blockList[curBlockIndex.x][curBlockIndex.y].clearColor(); // clear the current block's color
+		// TODO: make move smooth
 		blockList[curBlockIndex.x+x][curBlockIndex.y+y].setColor(thisColor); // set the new color
 		curBlockIndex = new Tuple<Integer,Integer>(curBlockIndex.x+x,curBlockIndex.y+y); // update the block's index
 		repaint(); // call paint
@@ -190,6 +193,7 @@ class Board extends JPanel implements ActionListener {
 				for (int i1=0;i1<Block.PanelColumnNum;i1++) {
 					blockList[i1][0].clearColor();
 				}
+				// TODO: special effect when removing a line
 				repaint(); // call paint 
 				flagRemoved = true; // update flag
 				lineRemoved++; // update number of line removed
@@ -211,6 +215,7 @@ class Board extends JPanel implements ActionListener {
 						|| j ==Block.PanelRowNum-1) continue;
 				// found two blocks that can be merged
 				if (thisColor == blockList[i][j+1].getColor()) {
+					// TODO: special effect when merging
 					blockList[i][j].clearColor(); // clear the color of the one above
 					blockList[i][j+1].setColor(thisColor.next()); // make the color darker
 					flagMerged =true; // update flag
