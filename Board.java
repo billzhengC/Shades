@@ -86,7 +86,9 @@ class Board extends JPanel implements ActionListener {
 		// test if the block is still dropping
 		if (isFallingDone) { 
 			isFallingDone = false; // if not, reset flag 
-			while (tryMerge()||tryRemoveLine()); // try merging blocks and clearing the line.
+			// TODO: bug here: does not function well
+			tryMerge();
+			tryRemoveLine(); // try merging blocks and clearing the line.
 			newRec(); // generate new block
 		}
 		else {
